@@ -1,3 +1,29 @@
 <resources>
-    <string name="app_name">DevLivery</string>
+    <string name="app_name">devLivery</string>
+
+    <!-- Navegacion -->
+    <!-- Cliente -->
+    <string name="drawer_productos">Productos</string>
+    <string name="drawer_carrito">Carrito</string>
+
+    <!-- Restaurant -->
+    <string name="drawer_gestion_productos">Gestión de productos</string>
+    <string name="drawer_lista_pedidos">Lista de pedidos</string>
+    <string name="drawer_lista_entregas">Entregas</string>
+
+    <!-- App -->
+    <string name="drawer_about">Acerca de </string>
+    <string name="drawer_logout">Cerrar sesión </string>
+
+    <string name="bienvenido">Bienvenido!!</string>
+
+
+    <!-- Acerca -->
+    <string name="descripcion_logo">Logo devLivery</string>
+    <string name="descripcion_github">Github</string>
+
+    <string name="version">Beta 1.0 (Educacional)</string>
+    <string name="github">https://github.com/andres-vasquez/devLivery</string>
+    <string name="contacto_email">andres.vasquez.agramont@gmail.com</string>
+    <string name="contacto_celular">+591 60507900</string>
 </resources>

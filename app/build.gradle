@@ -44,6 +44,8 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
 }
 
+apply plugin: 'com.google.gms.google-services'
+
 buildscript {
     ext.support_version = '24.0.0'
     ext.firebase_version = '9.0.0'

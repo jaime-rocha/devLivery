@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_xxl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_xxl"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="@dimen/logo_w_h"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:contentDescription="@string/descripcion_logo"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:id="@+id/lblVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_xxl"
+            android:gravity="center"
+            android:text="@string/version"/>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardGithub"
+            android:layout_marginTop="@dimen/padding_xxl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:cardElevation="@dimen/fab_elevation">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_md">
+
+                <ImageView
+                    android:id="@+id/imgGithub"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/descripcion_github"
+                    android:layout_width="@dimen/logo_github"
+                    android:layout_height="@dimen/logo_github" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/padding_md"
+                    android:paddingStart="@dimen/padding_md"
+                    android:text="@string/github"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/padding_double">
+
+        <TextView
+            android:id="@+id/lblEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_md"
+            android:gravity="center"
+            android:text="@string/contacto_email"/>
+
+        <TextView
+            android:id="@+id/lblCelular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_xl"
+            android:textColor="@color/secondary"
+            android:textSize="@dimen/text_md"
+            android:gravity="center"
+            android:text="@string/contacto_celular"/>
+
+    </LinearLayout>
+</RelativeLayout>

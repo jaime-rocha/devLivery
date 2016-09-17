@@ -2,4 +2,31 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_elevation">8dp</dimen>
+
+    <dimen name="logo_w_h">160dp</dimen>
+    <dimen name="logo_github">32dp</dimen>
+
+    <dimen name="headerbar_elevation">4dp</dimen>
+    <dimen name="card_margin">16dp</dimen>
+    <dimen name="size_fab">56dp</dimen>
+    <dimen name="avatar_size">40dp</dimen>
+    <dimen name="size_menu">96dp</dimen>
+
+    <dimen name="padding_sm">4dp</dimen>
+    <dimen name="padding_md">8dp</dimen>
+    <dimen name="padding_lg">12dp</dimen>
+    <dimen name="padding_xl">16dp</dimen>
+    <dimen name="padding_xxl">18dp</dimen>
+    <dimen name="padding_double">32dp</dimen>
+
+    <dimen name="text_xs">10sp</dimen>
+    <dimen name="text_sm">12sp</dimen>
+    <dimen name="text_md">14sp</dimen>
+    <dimen name="text_lg">16sp</dimen>
+    <dimen name="text_xl">18sp</dimen>
+    <dimen name="text_xxl">20sp</dimen>
+
+    <dimen name="progress_height">10dp</dimen>
 </resources>
