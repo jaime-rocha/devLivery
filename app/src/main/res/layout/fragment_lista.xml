@@ -29,6 +29,7 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_margin="@dimen/fab_margin"
-        app:elevation="@dimen/fab_elevation" />
+        app:elevation="@dimen/fab_elevation"
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>

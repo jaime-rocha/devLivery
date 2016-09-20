@@ -10,6 +10,8 @@
 
     <dimen name="headerbar_elevation">4dp</dimen>
     <dimen name="card_margin">16dp</dimen>
+    <dimen name="card_radius">4dp</dimen>
+
     <dimen name="size_fab">56dp</dimen>
     <dimen name="avatar_size">40dp</dimen>
     <dimen name="size_menu">96dp</dimen>

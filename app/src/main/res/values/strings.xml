@@ -15,7 +15,27 @@
     <string name="drawer_about">Acerca de </string>
     <string name="drawer_logout">Cerrar sesión </string>
 
+    <!-- Productos -->
     <string name="bienvenido">Bienvenido!!</string>
+    <string name="instrucciones">Agrega tus productos a la App devLivery</string>
+
+    <string name="categoria">Tipo de producto</string>
+    <string name="nombre_producto">Nombre del producto</string>
+    <string name="precio_producto">Precio</string>
+    <string name="descripcion_producto">Descripción</string>
+    <string name="item_descripcion_tooltip">Descripción del plato/producto</string>
+    <string name="crear_producto">Crear producto</string>
+
+    <string name="error_nombre">Ingrese el nombre del producto</string>
+    <string name="error_precio">Ingrese el precio del producto</string>
+    <string name="error_precio_valido">Ingrese un precio válido</string>
+    <string name="error_descripcion">Ingrese la descripción del producto</string>
+
+    <!-- Foto -->
+    <string name="titulo_adjunta">Adjunte una fotografía del producto/plato</string>
+    <string name="adjuntar">Adjuntar</string>
+    <string name="continuar">Continuar</string>
+    <string name="atras">Atrás</string>
 
 
     <!-- Acerca -->

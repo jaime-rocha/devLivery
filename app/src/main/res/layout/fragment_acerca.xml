@@ -90,7 +90,8 @@
             android:textColor="@color/secondary"
             android:textSize="@dimen/text_md"
             android:gravity="center"
-            android:text="@string/contacto_celular"/>
+            android:text="@string/contacto_celular"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 </RelativeLayout>

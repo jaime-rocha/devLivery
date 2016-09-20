@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.jakare.devlivery" >
+    package="net.jakare.devlivery">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -18,16 +18,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:windowSoftInputMode="adjustPan">
-
-        <activity android:name=".ui.activities.MainActivity"
+        <activity
+            android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activities.AgregarProductoActivity" />
+        <activity android:name=".ui.activities.DetalleProductoActivity" />
+        <activity android:name=".ui.activities.AgregarFotoActivity"></activity>
     </application>
 
 </manifest>

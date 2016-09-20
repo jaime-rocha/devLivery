@@ -226,6 +226,8 @@ public class MainActivity extends AppCompatActivity {
                 .withSelectedItem(1)
                 .withSavedInstance(savedInstanceState)
                 .build();
+
+        selectItem(DRAWER_ITEM_PRODUCTOS);
     }
 
     public void selectItem(int idMenu) {

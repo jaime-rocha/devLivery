@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.activities.AgregarProductoActivity"
+    tools:showIn="@layout/activity_agregar_producto"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_xl">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_xl"
+                        android:textStyle="bold"
+                        android:text="@string/bienvenido"/>
+
+                    <TextView
+                        android:id="@+id/lblInstrucciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:text="@string/instrucciones"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_xl">
+
+                    <ImageView
+                        android:contentDescription="@string/descripcion_logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/logo" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_xl"
+                android:layout_marginTop="@dimen/padding_xl"
+                android:background="@color/colorAccent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_xl"
+                    android:textStyle="bold"
+                    android:text="@string/categoria"/>
+
+                <Spinner
+                    android:id="@+id/cmbCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:entries="@array/tipo_producto"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_xl">
+
+                <LinearLayout
+                    android:id="@+id/lyNombreProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_xl"
+                        android:text="@string/nombre_producto"/>
+
+                    <EditText
+                        android:id="@+id/txtNombreProducto"
+                        android:layout_marginTop="@dimen/padding_sm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:singleLine="true"
+                        android:lines="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingEnd="@dimen/padding_md"
+                        android:paddingRight="@dimen/padding_md"
+                        android:gravity="bottom"
+                        android:text="@string/precio_producto"/>
+
+                    <EditText
+                        android:id="@+id/txtPrecio"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingEnd="@dimen/padding_md"
+                        android:paddingRight="@dimen/padding_md"
+                        android:gravity="bottom"
+                        android:inputType="numberDecimal"
+                        android:lines="1"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_xl"
+                    android:text="@string/descripcion_producto"/>
+
+                <EditText
+                    android:id="@+id/txtDescripcion"
+                    android:layout_marginTop="@dimen/padding_sm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:hint="@string/item_descripcion_tooltip"
+                    android:textSize="@dimen/text_md"
+                    android:background="@drawable/increase_bkg"
+                    android:scrollbars="vertical"
+                    android:minLines="5"
+                    android:maxLines="50"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCrear"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_marginTop="@dimen/padding_xl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_lg"
+                android:paddingBottom="@dimen/padding_lg"
+                android:text="@string/crear_producto"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
