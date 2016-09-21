@@ -19,7 +19,6 @@
             android:background="?attr/colorPrimary"
             app:elevation="@dimen/fab_elevation"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:transitionName="actionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <RelativeLayout

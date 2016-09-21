@@ -17,6 +17,7 @@
 
     <!-- Productos -->
     <string name="bienvenido">Bienvenido!!</string>
+    <string name="antojo">Qué se te antoja hoy?</string>
     <string name="instrucciones">Agrega tus productos a la App devLivery</string>
 
     <string name="categoria">Tipo de producto</string>
@@ -36,6 +37,10 @@
     <string name="adjuntar">Adjuntar</string>
     <string name="continuar">Continuar</string>
     <string name="atras">Atrás</string>
+
+    <string name="error_adjuntar">Adjunte una foto por favor</string>
+    <string name="error_subir_foto">Error al adjuntar foto</string>
+    <string name="registro_correcto">Registro correcto</string>
 
 
     <!-- Acerca -->

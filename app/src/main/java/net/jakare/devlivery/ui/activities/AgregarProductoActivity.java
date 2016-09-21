@@ -91,7 +91,7 @@ public class AgregarProductoActivity extends AppCompatActivity implements View.O
 
             Intent agregarFotos=new Intent(context,AgregarFotoActivity.class);
             agregarFotos.putExtra(AppConstants.TAG_PRODUCTO,new Gson().toJson(producto));
-
+            startActivity(agregarFotos);
         }
     }
 }
