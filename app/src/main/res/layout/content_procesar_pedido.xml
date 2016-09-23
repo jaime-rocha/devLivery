@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.activities.AgregarProductoActivity"
-    tools:showIn="@layout/activity_agregar_producto"
+    tools:context=".ui.activities.ProcesarPedidoActivity"
+    tools:showIn="@layout/activity_procesar_pedido"
     android:orientation="vertical">
 
     <ScrollView
@@ -36,14 +36,14 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/text_xl"
                         android:textStyle="bold"
-                        android:text="@string/bienvenido"/>
+                        android:text="@string/ya_casi"/>
 
                     <TextView
                         android:id="@+id/lblInstrucciones"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text"
-                        android:text="@string/instrucciones"/>
+                        android:text="@string/procesar_instrucciones"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -61,31 +61,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_xl"
-                android:layout_marginTop="@dimen/padding_xl"
-                android:background="@color/colorAccent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_xl"
-                    android:textStyle="bold"
-                    android:text="@string/categoria"/>
-
-                <Spinner
-                    android:id="@+id/cmbCategoria"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:entries="@array/tipo_producto"/>
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +68,7 @@
                 android:padding="@dimen/padding_xl">
 
                 <LinearLayout
-                    android:id="@+id/lyNombreProducto"
+                    android:id="@+id/lyNombreCompleto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -102,10 +77,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_xl"
-                        android:text="@string/nombre_producto"/>
+                        android:text="@string/nombre_completo"/>
 
                     <EditText
-                        android:id="@+id/txtNombreProducto"
+                        android:id="@+id/txtNombreCompleto"
                         android:layout_marginTop="@dimen/padding_sm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -125,16 +100,40 @@
                         android:paddingEnd="@dimen/padding_md"
                         android:paddingRight="@dimen/padding_md"
                         android:gravity="bottom"
-                        android:text="@string/precio_producto"/>
+                        android:text="@string/direccion"/>
 
                     <EditText
-                        android:id="@+id/txtPrecio"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txtDireccion"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingEnd="@dimen/padding_lg"
                         android:paddingRight="@dimen/padding_lg"
                         android:gravity="bottom"
-                        android:inputType="numberDecimal"
+                        android:ems="5"
+                        android:maxLines="1"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="@dimen/padding_md"
+                        android:paddingRight="@dimen/padding_md"
+                        android:gravity="bottom"
+                        android:text="@string/telefono"/>
+
+                    <EditText
+                        android:id="@+id/txtTelefono"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="@dimen/padding_lg"
+                        android:paddingRight="@dimen/padding_lg"
+                        android:inputType="phone"
+                        android:gravity="bottom"
                         android:ems="5"
                         android:maxLines="1"/>
 
@@ -144,15 +143,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_xl"
-                    android:text="@string/descripcion_producto"/>
+                    android:text="@string/observaciones"/>
 
                 <EditText
-                    android:id="@+id/txtDescripcion"
+                    android:id="@+id/txtObservaciones"
                     android:layout_marginTop="@dimen/padding_sm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top"
-                    android:hint="@string/item_descripcion_tooltip"
+                    android:hint="@string/observaciones_hint"
                     android:textSize="@dimen/text_md"
                     android:background="@drawable/increase_bkg"
                     android:scrollbars="vertical"
@@ -161,15 +160,15 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnCrear"
+                android:id="@+id/btnEnviar"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_marginTop="@dimen/padding_xl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/padding_lg"
                 android:paddingBottom="@dimen/padding_lg"
-                android:text="@string/crear_producto"
-                />
+                android:text="@string/enviar_pedido"
+                android:layout_marginBottom="@dimen/padding_double"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

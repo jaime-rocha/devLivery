@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -39,13 +41,19 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import net.jakare.devlivery.R;
 import net.jakare.devlivery.controller.data.SharedPreferencesData;
+import net.jakare.devlivery.model.appClasses.Carrito;
+import net.jakare.devlivery.model.dbClasses.Producto;
 import net.jakare.devlivery.model.dbClasses.User;
 import net.jakare.devlivery.ui.fragments.FragmentAcerca;
+import net.jakare.devlivery.ui.fragments.restaurant.FragmentGestionProductos;
 import net.jakare.devlivery.ui.fragments.restaurant.FragmentListaEntregas;
 import net.jakare.devlivery.ui.fragments.restaurant.FragmentListaPedidos;
-import net.jakare.devlivery.ui.fragments.usuarios.FragmentProductos;
 import net.jakare.devlivery.ui.fragments.usuarios.FragmentCarrito;
-import net.jakare.devlivery.ui.fragments.restaurant.FragmentGestionProductos;
+import net.jakare.devlivery.ui.fragments.usuarios.FragmentProductos;
+import net.jakare.devlivery.utils.constants.AppConstants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,7 +62,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private StorageReference storageReference;
 
-    private static final int RC_SIGN_IN = 100;
+    //RC Request code
+    public static final int RC_SIGN_IN = 100;
+    public static final int RC_CARRITO = 101;
+    public static final int RC_PROCESAR = 102;
 
     //Vista para el cliente
     public static final int DRAWER_ITEM_PRODUCTOS = 1;
@@ -75,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    //Pedidos
+    private TextView badgeCarrito;
+    private List<Carrito> lstCarrito;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         initToolbar();
+        lstCarrito =new ArrayList<Carrito>();
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -291,21 +308,43 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_menu_principal, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        View menuItemCarrito = menu.findItem(R.id.action_carrito).getActionView();
+        badgeCarrito = (TextView) menuItemCarrito.findViewById(R.id.badge_carrito);
+        badgeCarrito.setVisibility(View.INVISIBLE);
+
+        menuItemCarrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectItem(DRAWER_ITEM_CARRITO);
+            }
+        });
+
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            if (drawer.isDrawerOpen())
-                drawer.closeDrawer();
-            else
-                drawer.openDrawer();
+        if (drawer != null) {
+            if (item.getItemId() == android.R.id.home) {
+                if (drawer.isDrawerOpen())
+                    drawer.closeDrawer();
+                else
+                    drawer.openDrawer();
+            }
         }
+
+        if(item.getItemId()==R.id.action_carrito){
+            selectItem(DRAWER_ITEM_CARRITO);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -323,10 +362,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.e("PC","PC0");
         if (requestCode == RC_SIGN_IN) {
+            Log.e("PC","PC1");
             if (resultCode == RESULT_OK) {
-                Log.e("LoginError","aca");
                 try
                 {
                     FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -350,6 +389,29 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "Ocurrió un error durante el login");
             }
         }
+        else if(requestCode == RC_CARRITO){
+            if (resultCode == RESULT_OK) {
+                try
+                {
+                    Producto productoAgregar=new Gson().fromJson(
+                            data.getStringExtra(AppConstants.TAG_PRODUCTO),Producto.class);
+
+                    //TODO validar que solo entre uno de cada tipo y que pida cantidad
+
+                    Carrito nuevoItem=new Carrito();
+                    nuevoItem.setId(lstCarrito.size()+1);
+                    nuevoItem.setProducto(productoAgregar);
+                    nuevoItem.setCantidad(1);
+                    nuevoItem.setSubtotal(productoAgregar.getPrecio());
+                    lstCarrito.add(nuevoItem);
+
+                    actualizarCarrito(lstCarrito.size());
+                }
+                catch (Exception ex){
+
+                }
+            }
+        }
     }
 
     private void signOut() {
@@ -363,8 +425,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     int count=0;
-    private void actualizarCarrito(){
-        drawer.updateBadge(DRAWER_ITEM_CARRITO,new StringHolder(String.valueOf(count)));
-        count++;
+    private void actualizarCarrito(final int cantidad){
+        drawer.updateBadge(DRAWER_ITEM_CARRITO,new StringHolder(String.valueOf(cantidad)));
+
+        if (badgeCarrito == null) return;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (cantidad == 0)
+                    badgeCarrito.setVisibility(View.INVISIBLE);
+                else {
+                    badgeCarrito.setVisibility(View.VISIBLE);
+                    badgeCarrito.setText(Integer.toString(cantidad));
+                }
+            }
+        });
+    }
+
+    public List<Carrito> getLstCarrito() {
+        return lstCarrito;
     }
 }

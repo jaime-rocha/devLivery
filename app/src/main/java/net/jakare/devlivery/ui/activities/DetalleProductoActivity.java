@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import net.jakare.devlivery.R;
 import net.jakare.devlivery.controller.data.SharedPreferencesData;
 import net.jakare.devlivery.model.dbClasses.Producto;
 import net.jakare.devlivery.model.dbClasses.User;
+import net.jakare.devlivery.utils.constants.AppConstants;
 
 public class DetalleProductoActivity extends AppCompatActivity {
 
@@ -53,7 +55,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         try {
-            String strBid=intent.getStringExtra("BidItem");
+            String strBid=intent.getStringExtra(AppConstants.TAG_ITEM_PRODUCTO);
             item=new Gson().fromJson(strBid,Producto.class);
 
             getSupportActionBar().setTitle(item.getNombre());
@@ -69,6 +71,17 @@ public class DetalleProductoActivity extends AppCompatActivity {
                     .placeholder(R.drawable.img_no_disponible)
                     .crossFade()
                     .into(header);
+
+            //Return selected product
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intentResultado=new Intent();
+                    intentResultado.putExtra(AppConstants.TAG_PRODUCTO,new Gson().toJson(item));
+                    setResult(RESULT_OK,intentResultado);
+                    finish();
+                }
+            });
         }
         catch (Exception ex)
         {

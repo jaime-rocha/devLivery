@@ -54,13 +54,11 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/lstList"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvLista"
+            android:padding="@dimen/padding_md"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="20dp"
-            android:padding="@dimen/padding_double"/>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

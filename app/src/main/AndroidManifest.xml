@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />`
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    `
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -25,16 +25,24 @@
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.AgregarProductoActivity"
+        <activity
+            android:name=".ui.activities.AgregarProductoActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.activities.DetalleProductoActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activities.DetalleProductoActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.activities.AgregarFotoActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activities.AgregarFotoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activities.ProcesarPedidoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
     </application>

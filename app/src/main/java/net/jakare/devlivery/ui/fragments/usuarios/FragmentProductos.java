@@ -4,20 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Spinner;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
 import net.jakare.devlivery.R;
@@ -39,19 +39,16 @@ public class FragmentProductos extends Fragment {
     private MainActivity act;
     private Context context;
 
-    private DatabaseReference databaseReference;
-    private FirebaseAuth firebaseAuth;
-    private StorageReference storageReference;
 
     private ProductosAdapter adapter;
-    private List<Producto> items=new ArrayList<Producto>();
-    private ListView lstList;
+    private RecyclerView rvLista;
+
+    private String categoria;
+    private Spinner cmbCategoria;
 
     public FragmentProductos() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,16 +62,30 @@ public class FragmentProductos extends Fragment {
         context=getActivity();
         initViews(view);
 
-        adapter=new ProductosAdapter(context,items);
-        lstList.setAdapter(adapter);
+        //Setting up recycler view
+        rvLista.setHasFixedSize(true);
+        GridLayoutManager cardLayoutManager = new GridLayoutManager(context, 2);
+        rvLista.setLayoutManager(cardLayoutManager);
 
-        lstList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        adapter=new ProductosAdapter(context);
+        rvLista.setAdapter(adapter);
+
+        cmbCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Producto selected = items.get(position);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+              categoria=adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        adapter.setOnItemClickListener(new ProductosAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Producto item) {
                 Intent details=new Intent(context, DetalleProductoActivity.class);
-                details.putExtra("BidItem",new Gson().toJson(selected));
-                startActivity(details);
+                details.putExtra(AppConstants.TAG_ITEM_PRODUCTO,new Gson().toJson(item));
+                act.startActivityForResult(details,MainActivity.RC_CARRITO);
             }
         });
 
@@ -84,14 +95,13 @@ public class FragmentProductos extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.e("Received",dataSnapshot.toString());
 
-                List<Producto> lstOfertas=new ArrayList<Producto>();
-                for(DataSnapshot oferta : dataSnapshot.getChildren()){
-                    Producto bid=oferta.getValue(Producto.class);
-                    lstOfertas.add(bid);
+                List<Producto> lstProductos=new ArrayList<Producto>();
+                for(DataSnapshot dataProducto : dataSnapshot.getChildren()){
+                    Producto producto=dataProducto.getValue(Producto.class);
+                    producto.setKey(dataProducto.getKey());
+                    lstProductos.add(producto);
                 }
-                items.clear();
-                items.addAll(lstOfertas);
-                adapter.notifyDataSetChanged();
+                adapter.swapCursor(lstProductos);
             }
 
             @Override
@@ -103,7 +113,8 @@ public class FragmentProductos extends Fragment {
     }
 
     private void initViews(View view) {
-        lstList=(ListView)view.findViewById(R.id.lstList);
+        rvLista=(RecyclerView) view.findViewById(R.id.rvLista);
+        cmbCategoria=(Spinner)view.findViewById(R.id.cmbCategoria);
     }
 
     @Override

@@ -2,6 +2,8 @@ package net.jakare.devlivery.model.dbClasses;
 
 import com.google.gson.annotations.SerializedName;
 
+import net.jakare.devlivery.model.appClasses.Carrito;
+
 import java.util.List;
 
 /**
@@ -16,11 +18,14 @@ public class Pedido {
     @SerializedName("estado")
     private int estado;
 
-    @SerializedName("productos")
-    private List<Producto> productos;
+    @SerializedName("carrito")
+    private List<Carrito> carrito;
 
     @SerializedName("usuario")
     private String usuario;
+
+    @SerializedName("usuarioId")
+    private String usuarioId;
 
     @SerializedName("direccion")
     private String direccion;
@@ -28,9 +33,17 @@ public class Pedido {
     @SerializedName("telefono")
     private String telefono;
 
+    @SerializedName("observaciones")
+    private String observaciones;
+
     @SerializedName("monto")
     private double monto;
 
+    @SerializedName("lat")
+    private double lat;
+
+    @SerializedName("lon")
+    private double lon;
 
     //Campos de AUD
     @SerializedName("usuarioAtendido")
@@ -64,12 +77,12 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
+    public List<Carrito> getCarrito() {
+        return carrito;
     }
 
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
+    public void setCarrito(List<Carrito> carrito) {
+        this.carrito = carrito;
     }
 
     public String getUsuario() {
@@ -142,5 +155,37 @@ public class Pedido {
 
     public void setFechaEntrega(String fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
+    }
+
+    public String getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
     }
 }

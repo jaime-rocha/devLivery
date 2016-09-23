@@ -289,7 +289,7 @@ public class GlobalFunctions {
      */
     public static String format2Digits(double value)
     {
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("0.00");
         return String.valueOf(df.format(value));
     }
 

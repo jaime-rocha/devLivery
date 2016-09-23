@@ -5,26 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.gson.Gson;
 
 import net.jakare.devlivery.R;
 import net.jakare.devlivery.model.dbClasses.Producto;
 import net.jakare.devlivery.ui.activities.AgregarProductoActivity;
-import net.jakare.devlivery.ui.activities.DetalleProductoActivity;
 import net.jakare.devlivery.ui.activities.MainActivity;
 import net.jakare.devlivery.ui.adapters.GestionProductosAdapter;
 import net.jakare.devlivery.utils.constants.AppConstants;
@@ -41,13 +37,9 @@ public class FragmentGestionProductos extends Fragment implements View.OnClickLi
     private MainActivity act;
     private Context context;
 
-    private DatabaseReference databaseReference;
-    private FirebaseAuth firebaseAuth;
-    private StorageReference storageReference;
-
     private GestionProductosAdapter adapter;
     private List<Producto> items=new ArrayList<Producto>();
-    private ListView lstList;
+    private RecyclerView rvLista;
 
     private FloatingActionButton fabAgregar;
 
@@ -68,16 +60,18 @@ public class FragmentGestionProductos extends Fragment implements View.OnClickLi
 
         initViews(view);
 
-        adapter=new GestionProductosAdapter(context,items);
-        lstList.setAdapter(adapter);
+        rvLista.setHasFixedSize(true);
+        RecyclerView.LayoutManager cardLayoutManager = new LinearLayoutManager(context);
+        rvLista.setLayoutManager(cardLayoutManager);
 
-        lstList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        adapter=new GestionProductosAdapter(items,context);
+        rvLista.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new GestionProductosAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Producto selected = items.get(position);
-                Intent details=new Intent(context, DetalleProductoActivity.class);
-                details.putExtra("BidItem",new Gson().toJson(selected));
-                startActivity(details);
+            public void onItemClick(Producto item) {
+
             }
         });
 
@@ -87,14 +81,13 @@ public class FragmentGestionProductos extends Fragment implements View.OnClickLi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.e("Received",dataSnapshot.toString());
 
-                List<Producto> lstOfertas=new ArrayList<Producto>();
-                for(DataSnapshot oferta : dataSnapshot.getChildren()){
-                    Producto bid=oferta.getValue(Producto.class);
-                    lstOfertas.add(bid);
+                List<Producto> lstProductos=new ArrayList<Producto>();
+                for(DataSnapshot dataProducto : dataSnapshot.getChildren()){
+                    Producto producto=dataProducto.getValue(Producto.class);
+                    producto.setKey(dataProducto.getKey());
+                    lstProductos.add(producto);
                 }
-                items.clear();
-                items.addAll(lstOfertas);
-                adapter.notifyDataSetChanged();
+                adapter.swapCursor(lstProductos);
             }
 
             @Override
@@ -112,7 +105,7 @@ public class FragmentGestionProductos extends Fragment implements View.OnClickLi
 
     private void initViews(View view) {
         fabAgregar=(FloatingActionButton)view.findViewById(R.id.fabAgregar);
-        lstList=(ListView)view.findViewById(R.id.lstList);
+        rvLista=(RecyclerView) view.findViewById(R.id.rvLista);
     }
 
     @Override

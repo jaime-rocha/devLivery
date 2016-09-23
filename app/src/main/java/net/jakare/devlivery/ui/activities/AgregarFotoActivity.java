@@ -165,6 +165,7 @@ public class AgregarFotoActivity extends AppCompatActivity implements View.OnCli
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d("Firebase", "uploadFromUri:onSuccess");
 
+                    producto.setFechaCreacion(GlobalFunctions.getDate());
                     producto.setFoto(taskSnapshot.getMetadata().getDownloadUrl().toString());
 
                     //Firebase upload object

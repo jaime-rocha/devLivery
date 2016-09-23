@@ -9,9 +9,6 @@
     <dimen name="logo_github">32dp</dimen>
 
     <dimen name="headerbar_elevation">4dp</dimen>
-    <dimen name="card_margin">16dp</dimen>
-    <dimen name="card_radius">4dp</dimen>
-
     <dimen name="size_fab">56dp</dimen>
     <dimen name="avatar_size">40dp</dimen>
     <dimen name="size_menu">96dp</dimen>
@@ -31,4 +28,10 @@
     <dimen name="text_xxl">20sp</dimen>
 
     <dimen name="progress_height">10dp</dimen>
+    <dimen name="layout_padding">8dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="card_padding">40dp</dimen>
+    <dimen name="card_margin_sm">4dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="card_radius">4dp</dimen>
 </resources>

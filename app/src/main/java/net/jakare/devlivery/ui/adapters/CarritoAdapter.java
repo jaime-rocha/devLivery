@@ -12,8 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import net.jakare.devlivery.R;
-import net.jakare.devlivery.model.dbClasses.Producto;
-import net.jakare.devlivery.ui.adapters.baseAdapters.ProductosRecyclerAdapter;
+import net.jakare.devlivery.model.appClasses.Carrito;
+import net.jakare.devlivery.ui.adapters.baseAdapters.CarritoRecyclerAdapter;
 import net.jakare.devlivery.utils.global.GlobalFunctions;
 
 import java.util.ArrayList;
@@ -26,17 +26,17 @@ import java.util.List;
 /***
  * Adapter to show bids in ListViews of fragments
  */
-public class ProductosAdapter extends ProductosRecyclerAdapter
+public class CarritoAdapter extends CarritoRecyclerAdapter
 {
-    private static final String TAG=ProductosAdapter.class.getSimpleName();
+    private static final String TAG=CarritoAdapter.class.getSimpleName();
 
-    private List<Producto> items;
+    private List<Carrito> items;
     private OnItemClickListener onItemClickListener;
 
     private Context context;
 
-    public ProductosAdapter(Context context) {
-        this.items = new ArrayList<Producto>();
+    public CarritoAdapter(Context context) {
+        this.items = new ArrayList<Carrito>();
         this.context=context;
     }
 
@@ -44,52 +44,62 @@ public class ProductosAdapter extends ProductosRecyclerAdapter
         public CardView lyItem;
         public ImageView imgImagen;
         public TextView lblTitulo;
-        public TextView lblPrecio;
+        public TextView lblPrecioUnitario;
+        public TextView lblCantidad;
+        public TextView lblSubtotal;
 
         public ViewHolder(View v) {
             super(v);
             lyItem=(CardView)v.findViewById(R.id.lyItem);
             imgImagen=(ImageView)v.findViewById(R.id.imgImagen);
             lblTitulo = (TextView) v.findViewById(R.id.lblTitulo);
-            lblPrecio = (TextView) v.findViewById(R.id.lblPrecio);
+            lblPrecioUnitario = (TextView) v.findViewById(R.id.lblPrecioUnitario);
+            lblCantidad = (TextView) v.findViewById(R.id.lblCantidad);
+            lblSubtotal = (TextView) v.findViewById(R.id.lblSubtotal);
         }
     }
 
     @Override
-    public Producto getItem(int position) {
+    public Carrito getItem(int position) {
         return items.get(position);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_producto, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_carrito, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder=(ViewHolder)holder;
-        final Producto producto=items.get(position);
+        final Carrito carrito=items.get(position);
 
-        viewHolder.lblTitulo.setText(producto.getNombre());
-        viewHolder.lblPrecio.setText(GlobalFunctions.format2Digits(producto.getPrecio()));
-        if (producto.getFoto() != null) {
+        viewHolder.lblTitulo.setText(carrito.getProducto().getNombre());
+        String precioUnitario=context.getResources().getString(R.string.carrito_precio_unitario)+
+                GlobalFunctions.format2Digits(carrito.getProducto().getPrecio());
+        viewHolder.lblPrecioUnitario.setText(precioUnitario);
+        String cantidad=context.getResources().getString(R.string.carrito_cantidad)+
+                carrito.getCantidad();
+        viewHolder.lblCantidad.setText(cantidad);
+        viewHolder.lblSubtotal.setText(GlobalFunctions.format2Digits(carrito.getSubtotal()));
+
+        if (carrito.getProducto().getFoto() != null) {
             Glide.with(context)
-                    .load(producto.getFoto())
+                    .load(carrito.getProducto().getFoto())
                     .centerCrop()
                     .placeholder(R.drawable.img_no_disponible)
                     .crossFade()
                     .into(viewHolder.imgImagen);
         }
 
-
         viewHolder.lyItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final OnItemClickListener listener = getOnItemClickListener();
                 if(listener != null){
-                    listener.onItemClick(producto);
+                    listener.onItemClick(carrito);
                 }
             }
         });
@@ -100,11 +110,11 @@ public class ProductosAdapter extends ProductosRecyclerAdapter
         return items.size();
     }
 
-    public void swapCursor(List<Producto> productos){
+    public void swapCursor(List<Carrito> pedidos){
         clearItems();
 
-        if(!productos.isEmpty()){
-            items.addAll(productos);
+        if(!pedidos.isEmpty()){
+            items.addAll(pedidos);
             notifyItemRangeInserted(0,items.size());
         }
     }
@@ -123,6 +133,6 @@ public class ProductosAdapter extends ProductosRecyclerAdapter
     }
 
     public interface OnItemClickListener{
-        public void onItemClick(Producto item);
+        public void onItemClick(Carrito item);
     }
 }

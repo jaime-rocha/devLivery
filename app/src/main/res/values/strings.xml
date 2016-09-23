@@ -32,6 +32,10 @@
     <string name="error_precio_valido">Ingrese un precio válido</string>
     <string name="error_descripcion">Ingrese la descripción del producto</string>
 
+    <string name="error_nombre_usuario">Ingrese su nombre completo</string>
+    <string name="error_direccion">Ingrese su nombre completo</string>
+    <string name="error_telefono">Ingrese su nombre completo</string>
+
     <!-- Foto -->
     <string name="titulo_adjunta">Adjunte una fotografía del producto/plato</string>
     <string name="adjuntar">Adjuntar</string>
@@ -41,6 +45,25 @@
     <string name="error_adjuntar">Adjunte una foto por favor</string>
     <string name="error_subir_foto">Error al adjuntar foto</string>
     <string name="registro_correcto">Registro correcto</string>
+
+    <!-- Carrito -->
+    <string name="titulo_carrito">Carrito de compra</string>
+    <string name="carrito_vaciar">Vaciar</string>
+    <string name="carrito_procesar">Procesar</string>
+    <string name="carrito_total">Total: </string>
+
+    <string name="carrito_precio_unitario">Precio: </string>
+    <string name="carrito_cantidad">Cantidad: </string>
+
+    <!-- Procesar pedido -->
+    <string name="ya_casi">Todo listo!</string>
+    <string name="procesar_instrucciones">Ingresa tus datos para llevarte el pedido</string>
+    <string name="nombre_completo">Nombre completo</string>
+    <string name="direccion">Dirección</string>
+    <string name="telefono">Teléfono</string>
+    <string name="observaciones">Observaciones</string>
+    <string name="observaciones_hint">Llena este campo con detalles de tu pedido. Pej. Sin aceitunas xD</string>
+    <string name="enviar_pedido">Enviar pedido</string>
 
 
     <!-- Acerca -->
