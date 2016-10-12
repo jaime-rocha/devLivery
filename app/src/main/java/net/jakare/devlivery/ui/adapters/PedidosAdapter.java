@@ -47,10 +47,10 @@ public class PedidosAdapter extends PedidosRecyclerAdapter
         public ViewHolder(View v) {
             super(v);
             lyItem=(CardView)v.findViewById(R.id.lyItem);
-            lblNombrePersona = (TextView) v.findViewById(R.id.lblTitulo);
-            lblDireccion = (TextView) v.findViewById(R.id.lblPrecio);
-            lblTelefono = (TextView) v.findViewById(R.id.lblTitulo);
-            lblPrecio = (TextView) v.findViewById(R.id.lblPrecio);
+            lblNombrePersona = (TextView) v.findViewById(R.id.lblNombrePersona);
+            lblDireccion = (TextView) v.findViewById(R.id.lblDireccion);
+            lblTelefono = (TextView) v.findViewById(R.id.lblTelefono);
+            lblPrecio = (TextView) v.findViewById(R.id.lblMonto);
         }
     }
 

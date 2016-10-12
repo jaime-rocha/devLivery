@@ -7,20 +7,17 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import net.jakare.devlivery.R;
+import net.jakare.devlivery.controller.server.FirebaseProductosController;
 import net.jakare.devlivery.model.dbClasses.Producto;
 import net.jakare.devlivery.ui.activities.AgregarProductoActivity;
+import net.jakare.devlivery.ui.activities.DetalleProductoActivity;
 import net.jakare.devlivery.ui.activities.MainActivity;
 import net.jakare.devlivery.ui.adapters.GestionProductosAdapter;
 import net.jakare.devlivery.utils.constants.AppConstants;
@@ -71,35 +68,29 @@ public class FragmentGestionProductos extends Fragment implements View.OnClickLi
         adapter.setOnItemClickListener(new GestionProductosAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Producto item) {
-
+                Intent details=new Intent(context, DetalleProductoActivity.class);
+                details.putExtra(AppConstants.TAG_ITEM_PRODUCTO,new Gson().toJson(item));
+                startActivity(details);
             }
         });
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child(AppConstants.TAG_PRODUCTO).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e("Received",dataSnapshot.toString());
-
-                List<Producto> lstProductos=new ArrayList<Producto>();
-                for(DataSnapshot dataProducto : dataSnapshot.getChildren()){
-                    Producto producto=dataProducto.getValue(Producto.class);
-                    producto.setKey(dataProducto.getKey());
-                    lstProductos.add(producto);
-                }
-                adapter.swapCursor(lstProductos);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
+        obtenerProductos();
 
         fabAgregar.setVisibility(View.VISIBLE);
         fabAgregar.setOnClickListener(this);
 
         return view;
+    }
+
+    private void obtenerProductos() {
+        FirebaseProductosController productosController=new FirebaseProductosController(act,
+                new FirebaseProductosController.ResultadoLista() {
+                    @Override
+                    public void onResponse(List<Producto> lstProductos) {
+                        adapter.swapCursor(lstProductos);
+                    }
+                });
+        productosController.ListasProductos("");
     }
 
 

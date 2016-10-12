@@ -51,7 +51,7 @@ public class ProductosAdapter extends ProductosRecyclerAdapter
             lyItem=(CardView)v.findViewById(R.id.lyItem);
             imgImagen=(ImageView)v.findViewById(R.id.imgImagen);
             lblTitulo = (TextView) v.findViewById(R.id.lblTitulo);
-            lblPrecio = (TextView) v.findViewById(R.id.lblPrecio);
+            lblPrecio = (TextView) v.findViewById(R.id.lblMonto);
         }
     }
 

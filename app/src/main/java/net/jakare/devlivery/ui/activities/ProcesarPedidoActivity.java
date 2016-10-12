@@ -5,19 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import net.jakare.devlivery.R;
 import net.jakare.devlivery.controller.data.SharedPreferencesData;
+import net.jakare.devlivery.controller.server.FirebasePedidosController;
 import net.jakare.devlivery.model.appClasses.Carrito;
 import net.jakare.devlivery.model.dbClasses.Pedido;
 import net.jakare.devlivery.model.dbClasses.User;
@@ -50,6 +51,13 @@ public class ProcesarPedidoActivity extends AppCompatActivity implements View.On
 
         context=this;
         initViews();
+
+        // Handle Toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.datos_pedido));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         btnEnviar.setOnClickListener(this);
 
@@ -118,22 +126,24 @@ public class ProcesarPedidoActivity extends AppCompatActivity implements View.On
             pedido.setMonto(monto);
 
             showProgressDialog();
-            //Firebase upload object
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-            databaseReference.child(AppConstants.TAG_PEDIDOS).push().setValue(pedido, new DatabaseReference.CompletionListener() {
+            FirebasePedidosController pedidosController=new FirebasePedidosController(this,
+                    new FirebasePedidosController.ResultadoGestion() {
                 @Override
-                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                public void onResponse(int codigoResultado, String mensaje) {
                     hideProgressDialog();
 
-                    Toast.makeText(context,getResources().getString(R.string.registro_correcto),Toast.LENGTH_SHORT).show();
-                    Intent main=new Intent(context,MainActivity.class);
-                    main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Toast.makeText(context,mensaje, Toast.LENGTH_SHORT).show();
 
-                    ProcesarPedidoActivity.this.finish();
-                    startActivity(main);
+                    if(codigoResultado==AppConstants.RESULTADO_CORRECTO){
+                        Intent main=new Intent(context,MainActivity.class);
+                        main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                        ProcesarPedidoActivity.this.finish();
+                        startActivity(main);
+                    }
                 }
             });
-
+            pedidosController.CrearPedido(pedido);
         }
     }
 
@@ -154,5 +164,21 @@ public class ProcesarPedidoActivity extends AppCompatActivity implements View.On
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            ProcesarPedidoActivity.this.finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

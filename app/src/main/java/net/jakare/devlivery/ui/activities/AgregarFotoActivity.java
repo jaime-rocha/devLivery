@@ -26,14 +26,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -41,6 +33,7 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import net.jakare.devlivery.R;
+import net.jakare.devlivery.controller.server.FirebaseProductosController;
 import net.jakare.devlivery.model.dbClasses.Producto;
 import net.jakare.devlivery.utils.constants.AppConstants;
 import net.jakare.devlivery.utils.global.GlobalFunctions;
@@ -146,46 +139,45 @@ public class AgregarFotoActivity extends AppCompatActivity implements View.OnCli
         }
         else {
             showProgressDialog();
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-
-            StorageReference storageReference = storage.getReferenceFromUrl(AppConstants.TAG_STORAGE);
             Uri fileUri=Uri.fromFile(fileImagen);
-
-            final StorageReference photoReference = storageReference.child(AppConstants.TAG_IMAGENES_PRODUCTOS).child(fileUri.getLastPathSegment());
-            photoReference.putFile(fileUri).addOnFailureListener(this, new OnFailureListener() {
+            FirebaseProductosController productosControllerFoto=new FirebaseProductosController(this, new FirebaseProductosController.ResultadoGestion() {
                 @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.e("Firebase", "uploadFromUri:onFailure", e);
+                public void onResponse(int codigoResultado, String mensaje) {
+                    if(codigoResultado==AppConstants.RESULTADO_INCORRECTO){
+                        hideProgressDialog();
+                        Toast.makeText(context,mensaje,Toast.LENGTH_SHORT).show();
+                    } else {
 
-                    Toast.makeText(context,getResources().getString(R.string.error_adjuntar),Toast.LENGTH_SHORT).show();
-                    hideProgressDialog();
-                }
-            }).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.d("Firebase", "uploadFromUri:onSuccess");
+                        producto.setFoto(mensaje);
+                        producto.setFechaCreacion(GlobalFunctions.getDate());
 
-                    producto.setFechaCreacion(GlobalFunctions.getDate());
-                    producto.setFoto(taskSnapshot.getMetadata().getDownloadUrl().toString());
-
-                    //Firebase upload object
-                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                    databaseReference.child(AppConstants.TAG_PRODUCTO).push().setValue(producto, new DatabaseReference.CompletionListener() {
-                        @Override
-                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                            hideProgressDialog();
-
-                            Toast.makeText(context,getResources().getString(R.string.registro_correcto),Toast.LENGTH_SHORT).show();
-                            Intent main=new Intent(context,MainActivity.class);
-                            main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                            AgregarFotoActivity.this.finish();
-                            startActivity(main);
-                        }
-                    });
+                        enviarProducto(producto);
+                    }
                 }
             });
+            productosControllerFoto.AdjuntarFoto(fileUri);
         }
+    }
+
+    private void enviarProducto(Producto producto) {
+        FirebaseProductosController productosController=new FirebaseProductosController(AgregarFotoActivity.this, new FirebaseProductosController.ResultadoGestion() {
+            @Override
+            public void onResponse(int codigoResultado, String mensaje) {
+                hideProgressDialog();
+                if(codigoResultado==AppConstants.RESULTADO_INCORRECTO){
+                    Toast.makeText(context,mensaje,Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context,mensaje,Toast.LENGTH_SHORT).show();
+
+                    Intent main=new Intent(context,MainActivity.class);
+                    main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    AgregarFotoActivity.this.finish();
+                    startActivity(main);
+                }
+            }
+        });
+        productosController.CrearProducto(producto);
     }
 
     @Override

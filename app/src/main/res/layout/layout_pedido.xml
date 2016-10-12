@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/white">
+    android:layout_margin="@dimen/card_margin">
 
     <android.support.v7.widget.CardView
         android:id="@+id/lyItem"
@@ -51,11 +51,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/precio_producto"
+                    android:text="@string/monto"
                     android:textColor="@color/text"/>
 
                 <TextView
-                    android:id="@+id/lblPrecio"
+                    android:id="@+id/lblMonto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/padding_md"

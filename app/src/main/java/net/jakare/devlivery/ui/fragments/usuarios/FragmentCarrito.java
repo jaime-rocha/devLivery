@@ -64,7 +64,7 @@ public class FragmentCarrito extends Fragment implements View.OnClickListener{
         rvLista.setLayoutManager(cardLayoutManager);
 
 
-        adapter=new CarritoAdapter(context);
+        adapter=new CarritoAdapter(context,true);
         rvLista.setAdapter(adapter);
 
         btnVaciar.setOnClickListener(this);

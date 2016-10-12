@@ -32,12 +32,14 @@ public class CarritoAdapter extends CarritoRecyclerAdapter
 
     private List<Carrito> items;
     private OnItemClickListener onItemClickListener;
+    private boolean mostarImagen=true;
 
     private Context context;
 
-    public CarritoAdapter(Context context) {
+    public CarritoAdapter(Context context, boolean mostarImagen) {
         this.items = new ArrayList<Carrito>();
         this.context=context;
+        this.mostarImagen=mostarImagen;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -85,13 +87,15 @@ public class CarritoAdapter extends CarritoRecyclerAdapter
         viewHolder.lblCantidad.setText(cantidad);
         viewHolder.lblSubtotal.setText(GlobalFunctions.format2Digits(carrito.getSubtotal()));
 
-        if (carrito.getProducto().getFoto() != null) {
-            Glide.with(context)
-                    .load(carrito.getProducto().getFoto())
-                    .centerCrop()
-                    .placeholder(R.drawable.img_no_disponible)
-                    .crossFade()
-                    .into(viewHolder.imgImagen);
+        if(mostarImagen){
+            if (carrito.getProducto().getFoto() != null) {
+                Glide.with(context)
+                        .load(carrito.getProducto().getFoto())
+                        .centerCrop()
+                        .placeholder(R.drawable.img_no_disponible)
+                        .crossFade()
+                        .into(viewHolder.imgImagen);
+            }
         }
 
         viewHolder.lyItem.setOnClickListener(new View.OnClickListener() {

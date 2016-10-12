@@ -94,7 +94,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
         header=(ImageView) findViewById(R.id.header);
         lblNombreProducto=(TextView)findViewById(R.id.lblNombreProducto);
         lblDescripcion=(TextView)findViewById(R.id.lblDescripcion);
-        lblPrecio=(TextView)findViewById(R.id.lblPrecio);
+        lblPrecio=(TextView)findViewById(R.id.lblMonto);
     }
 
     @Override

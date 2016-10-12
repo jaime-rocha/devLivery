@@ -64,7 +64,11 @@
     <string name="observaciones">Observaciones</string>
     <string name="observaciones_hint">Llena este campo con detalles de tu pedido. Pej. Sin aceitunas xD</string>
     <string name="enviar_pedido">Enviar pedido</string>
+    <string name="datos_pedido">Datos del pedido</string>
+    <string name="monto">Monto:</string>
 
+    <!-- Detalle pedido -->
+    <string name="detalle_pedido">Detalle de pedido</string>
 
     <!-- Acerca -->
     <string name="descripcion_logo">Logo devLivery</string>
