@@ -425,7 +425,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     int count=0;
-    private void actualizarCarrito(final int cantidad){
+    public void actualizarCarrito(final int cantidad){
         drawer.updateBadge(DRAWER_ITEM_CARRITO,new StringHolder(String.valueOf(cantidad)));
 
         if (badgeCarrito == null) return;

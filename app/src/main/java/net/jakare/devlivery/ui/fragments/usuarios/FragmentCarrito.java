@@ -122,6 +122,9 @@ public class FragmentCarrito extends Fragment implements View.OnClickListener{
             case R.id.btnVaciar:
                 items.clear();
                 adapter.swapCursor(items);
+                act.getLstCarrito().clear();
+                act.actualizarCarrito(0);
+                lblTotal.setText(GlobalFunctions.format2Digits(0));
                 break;
             case R.id.btnProcesarCompra:
                 procesarCarrito();
