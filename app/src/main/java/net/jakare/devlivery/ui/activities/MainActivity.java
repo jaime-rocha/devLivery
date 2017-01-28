@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
-                            .setLogo(R.drawable.logo)
+                            .setLogo(R.drawable.panweb)
                             .setProviders(
                                     AuthUI.GOOGLE_PROVIDER,
                                     AuthUI.EMAIL_PROVIDER)

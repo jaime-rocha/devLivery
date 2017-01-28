@@ -5,14 +5,14 @@ package net.jakare.devlivery.utils.constants;
  */
 
 public class AppConstants {
-    public static final String TAG_PRODUCTO="producto";
+    public static final String TAG_PRODUCTO="manqa_producto";
     public static final String DIRECTORY_NAME = "devLivery";
 
     //Firebase
     public static final String TAG_STORAGE="gs://devlivery-a8edd.appspot.com";
-    public static final String TAG_IMAGENES_PRODUCTOS = "productos";
+    public static final String TAG_IMAGENES_PRODUCTOS = "manqa_productos";
     public static final String TAG_PRODUCTOS = "productos";
-    public static final String TAG_PEDIDOS = "pedidos";
+    public static final String TAG_PEDIDOS = "manqa_pedidos";
     public static final String TAG_ESTADO = "estado";
     public static final String TAG_CATEGORIA = "categoria";
 

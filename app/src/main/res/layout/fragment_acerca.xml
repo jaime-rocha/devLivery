@@ -16,11 +16,11 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxHeight="@dimen/logo_w_h"
+            android:maxHeight="200dp"
             android:adjustViewBounds="true"
             android:layout_gravity="center"
             android:contentDescription="@string/descripcion_logo"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/panweb"/>
 
         <TextView
             android:id="@+id/lblVersion"
@@ -71,7 +71,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:padding="@dimen/padding_double">
+        android:padding="@dimen/padding_double"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/lblEmail"

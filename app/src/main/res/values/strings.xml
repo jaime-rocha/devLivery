@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">devLivery</string>
+    <string name="app_name">Pweeb</string>
 
     <!-- Navegacion -->
     <!-- Cliente -->
@@ -9,7 +9,7 @@
     <!-- Restaurant -->
     <string name="drawer_gestion_productos">Gestión de productos</string>
     <string name="drawer_lista_pedidos">Lista de pedidos</string>
-    <string name="drawer_lista_entregas">Entregas</string>
+    <string name="drawer_lista_entregas">Entregados</string>
 
     <!-- App -->
     <string name="drawer_about">Acerca de </string>
@@ -17,8 +17,8 @@
 
     <!-- Productos -->
     <string name="bienvenido">Bienvenido!!</string>
-    <string name="antojo">Qué se te antoja hoy?</string>
-    <string name="instrucciones">Agrega tus productos a la App devLivery</string>
+    <string name="antojo">Que se servirá hoy?</string>
+    <string name="instrucciones">Agrega tus productos al Carrito</string>
 
     <string name="categoria">Tipo de producto</string>
     <string name="nombre_producto">Nombre del producto</string>
@@ -57,12 +57,12 @@
 
     <!-- Procesar pedido -->
     <string name="ya_casi">Todo listo!</string>
-    <string name="procesar_instrucciones">Ingresa tus datos para llevarte el pedido</string>
+    <string name="procesar_instrucciones">Ingresa los datos del cliente</string>
     <string name="nombre_completo">Nombre completo</string>
-    <string name="direccion">Dirección</string>
-    <string name="telefono">Teléfono</string>
+    <string name="direccion">AREA</string>
+    <string name="telefono">Piso</string>
     <string name="observaciones">Observaciones</string>
-    <string name="observaciones_hint">Llena este campo con detalles de tu pedido. Pej. Sin aceitunas xD</string>
+    <string name="observaciones_hint">Llena este campo con detalles de tu pedido.</string>
     <string name="enviar_pedido">Enviar pedido</string>
     <string name="datos_pedido">Datos del pedido</string>
     <string name="monto">Monto:</string>
