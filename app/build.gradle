@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "net.jakare.devlivery"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -20,41 +20,37 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:design:$support_version"
-    compile "com.android.support:cardview-v7:$support_version"
-    compile "com.android.support:recyclerview-v7:$support_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "com.firebaseui:firebase-ui-auth:$firebaseui_version"
-    compile "com.firebaseui:firebase-ui-database:$firebaseui_version"
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:design:$support_version"
+    implementation "com.android.support:cardview-v7:$support_version"
+    implementation "com.android.support:recyclerview-v7:$support_version"
 
-    compile "com.google.firebase:firebase-database:$firebase_version"
-    compile "com.google.firebase:firebase-storage:$firebase_version"
+    implementation "com.firebaseui:firebase-ui-auth:$firebaseui_version"
+    implementation "com.firebaseui:firebase-ui-database:$firebaseui_version"
 
-    compile('com.mikepenz:materialdrawer:5.3.6@aar') {
-        transitive = true
-    }
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation "com.google.firebase:firebase-database:$firebase_version"
+    implementation "com.google.firebase:firebase-storage:$firebase_version"
 
+    implementation 'com.mikepenz:materialdrawer:6.0.9'
 
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'pub.devrel:easypermissions:0.1.7'
-    compile 'com.mikepenz:iconics-core:2.7.1@aar'
-    compile 'com.mikepenz:fontawesome-typeface:4.6.0.2@aar'
-    compile 'com.google.code.gson:gson:2.4'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'jp.wasabeef:glide-transformations:2.0.1'
-    testCompile 'junit:junit:4.12'
+    implementation 'pub.devrel:easypermissions:0.2.1'
+    implementation 'com.mikepenz:iconics-core:2.7.1@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:4.6.0.2@aar'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'jp.wasabeef:glide-transformations:2.0.1'
+    implementation 'junit:junit:4.12'
 }
 
 apply plugin: 'com.google.gms.google-services'
 
 
-
-
-
 buildscript {
-    ext.support_version = '23.4.0'
-    ext.firebase_version = '9.0.0'
-    ext.firebaseui_version = '0.4.1'
+    ext.support_version = '28.0.0'
+    ext.firebase_version = '17.0.0'
+    ext.firebaseui_version = '5.0.0'
 }

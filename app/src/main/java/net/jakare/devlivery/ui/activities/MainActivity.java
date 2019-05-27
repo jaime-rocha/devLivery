@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +54,7 @@ import net.jakare.devlivery.ui.fragments.usuarios.FragmentProductos;
 import net.jakare.devlivery.utils.constants.AppConstants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -99,43 +101,45 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         initToolbar();
-        lstCarrito =new ArrayList<Carrito>();
+        lstCarrito = new ArrayList<Carrito>();
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null)
-        {
+        if (firebaseAuth.getCurrentUser() != null) {
             FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-            User user=new User();
+            User user = new User();
             user.setIdUser(currentUser.getUid());
             user.setDisplayName(currentUser.getDisplayName());
             user.setEmail(currentUser.getEmail());
 
-            try
-            {
+            try {
                 user.setPhotoUrl(String.valueOf(currentUser.getPhotoUrl()));
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 user.setPhotoUrl("");
             }
 
-            SharedPreferencesData prefs=new SharedPreferencesData(context);
+            SharedPreferencesData prefs = new SharedPreferencesData(context);
             prefs.setUserData(user);
 
-            initNavegacionDrawer(savedInstanceState,user);
+            initNavegacionDrawer(savedInstanceState, user);
             selectItem(DRAWER_ITEM_PRODUCTOS);
-        }
-        else
-        {
+        } else {
+            // https://developers.google.com/identity/protocols/googlescopes
+            AuthUI.IdpConfig googleIdp = new AuthUI.IdpConfig.GoogleBuilder()
+                    .setScopes(Arrays.asList(Scopes.EMAIL))
+                    .build();
+
             // generamos la pantalla de logueo
             startActivityForResult(
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
-                            .setLogo(R.drawable.panweb)
-                            .setProviders(
-                                    AuthUI.GOOGLE_PROVIDER,
-                                    AuthUI.EMAIL_PROVIDER)
+                            .setLogo(R.drawable.maindish)
+                            .setAvailableProviders(Arrays.asList(
+                                    new AuthUI.IdpConfig.GoogleBuilder().setScopes(Arrays.asList(Scopes.EMAIL))
+                                            .build(),
+                                    new AuthUI.IdpConfig.EmailBuilder()
+                                            .build()))
                             .setTheme(R.style.devLiveryTheme)
                             .build(), RC_SIGN_IN);
         }
@@ -236,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        selectItem((int)drawerItem.getIdentifier());
+                        selectItem((int) drawerItem.getIdentifier());
                         return false;
                     }
                 })
@@ -309,7 +313,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -341,7 +344,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(item.getItemId()==R.id.action_carrito){
+        if (item.getItemId() == R.id.action_carrito) {
             selectItem(DRAWER_ITEM_CARRITO);
         }
 
@@ -362,52 +365,47 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("PC","PC0");
+        Log.e("PC", "PC0");
         if (requestCode == RC_SIGN_IN) {
-            Log.e("PC","PC1");
+            Log.e("PC", "PC1");
             if (resultCode == RESULT_OK) {
-                try
-                {
+                try {
                     FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                    User user=new User();
+                    User user = new User();
                     user.setIdUser(currentUser.getUid());
                     user.setDisplayName(currentUser.getDisplayName());
                     user.setPhotoUrl(String.valueOf(currentUser.getPhotoUrl()));
 
-                    SharedPreferencesData prefs=new SharedPreferencesData(context);
+                    SharedPreferencesData prefs = new SharedPreferencesData(context);
                     prefs.setUserData(user);
 
                     databaseReference.child("users").child(currentUser.getUid()).setValue(user);
 
                     startActivity(new Intent(this, MainActivity.class));
                     finish();
-                }
-                catch (Exception ex){
-                    Log.e("LoginError",""+ex.getMessage());
+                } catch (Exception ex) {
+                    Log.e("LoginError", "" + ex.getMessage());
                 }
             } else {
                 Log.e(TAG, "Ocurrió un error durante el login");
             }
-        }
-        else if(requestCode == RC_CARRITO){
+        } else if (requestCode == RC_CARRITO) {
             if (resultCode == RESULT_OK) {
-                try
-                {
-                    Producto productoAgregar=new Gson().fromJson(
-                            data.getStringExtra(AppConstants.TAG_PRODUCTO),Producto.class);
+                try {
+                    Producto productoAgregar = new Gson().fromJson(
+                            data.getStringExtra(AppConstants.TAG_PRODUCTO), Producto.class);
 
                     //TODO validar que solo entre uno de cada tipo y que pida cantidad
 
-                    Carrito nuevoItem=new Carrito();
-                    nuevoItem.setId(lstCarrito.size()+1);
+                    Carrito nuevoItem = new Carrito();
+                    nuevoItem.setId(lstCarrito.size() + 1);
                     nuevoItem.setProducto(productoAgregar);
                     nuevoItem.setCantidad(1);
                     nuevoItem.setSubtotal(productoAgregar.getPrecio());
                     lstCarrito.add(nuevoItem);
 
                     actualizarCarrito(lstCarrito.size());
-                }
-                catch (Exception ex){
+                } catch (Exception ex) {
 
                 }
             }
@@ -424,9 +422,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    int count=0;
-    public void actualizarCarrito(final int cantidad){
-        drawer.updateBadge(DRAWER_ITEM_CARRITO,new StringHolder(String.valueOf(cantidad)));
+    int count = 0;
+
+    public void actualizarCarrito(final int cantidad) {
+        drawer.updateBadge(DRAWER_ITEM_CARRITO, new StringHolder(String.valueOf(cantidad)));
 
         if (badgeCarrito == null) return;
         runOnUiThread(new Runnable() {

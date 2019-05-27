@@ -43,29 +43,29 @@ public class FragmentAcerca extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_acerca, container, false);
-        context=getActivity();
+        View view = inflater.inflate(R.layout.fragment_acerca, container, false);
+        context = getActivity();
 
         initViews(view);
-        imgGithub.setImageDrawable(new IconicsDrawable(context, FontAwesome.Icon.faw_github)
+        imgGithub.setImageDrawable(new IconicsDrawable(context, FontAwesome.Icon.faw_chrome)
                 .color(getResources().getColor(R.color.text)));
 
         return view;
     }
 
     private void initViews(View view) {
-        imgGithub=(ImageView)view.findViewById(R.id.imgGithub);
-        cardGithub=(CardView)view.findViewById(R.id.cardGithub);
-        lblVersion=(TextView)view.findViewById(R.id.lblVersion);
-        lblEmail=(TextView)view.findViewById(R.id.lblEmail);
-        lblCelular=(TextView)view.findViewById(R.id.lblCelular);
+        imgGithub = (ImageView) view.findViewById(R.id.imgGithub);
+        cardGithub = (CardView) view.findViewById(R.id.cardGithub);
+        lblVersion = (TextView) view.findViewById(R.id.lblVersion);
+        lblEmail = (TextView) view.findViewById(R.id.lblEmail);
+        lblCelular = (TextView) view.findViewById(R.id.lblCelular);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof MainActivity){
-            act=(MainActivity)context;
+        if (context instanceof MainActivity) {
+            act = (MainActivity) context;
         }
     }
 

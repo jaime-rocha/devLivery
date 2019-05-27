@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Pweeb</string>
+    <string name="app_name">MainDish</string>
+    <string name="progress_dialog_loading">Cargando...</string>
 
     <!-- Navegacion -->
     <!-- Cliente -->
@@ -71,11 +72,12 @@
     <string name="detalle_pedido">Detalle de pedido</string>
 
     <!-- Acerca -->
-    <string name="descripcion_logo">Logo devLivery</string>
+    <string name="descripcion_logo">Logo MainDish</string>
     <string name="descripcion_github">Github</string>
 
-    <string name="version">Beta 1.0 (Educacional)</string>
-    <string name="github">https://github.com/andres-vasquez/devLivery</string>
+    <string name="version">Beta 1.0 (Demo MainDish)</string>
+    <string name="github">https://maindish.io</string>
+    <string name="contacto">Andrés Vasquez Agramont</string>
     <string name="contacto_email">andres.vasquez.agramont@gmail.com</string>
     <string name="contacto_celular">+591 60507900</string>
 </resources>
