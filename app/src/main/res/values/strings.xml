@@ -12,6 +12,7 @@
     <string name="drawer_lista_pedidos">Lista de pedidos</string>
     <string name="drawer_lista_entregas">Entregados</string>
     <string name="drawer_lista_publicidad">Publicidad</string>
+    <string name="drawer_lista_demo">Demo Soporte venta</string>
 
     <!-- App -->
     <string name="drawer_about">Acerca de </string>

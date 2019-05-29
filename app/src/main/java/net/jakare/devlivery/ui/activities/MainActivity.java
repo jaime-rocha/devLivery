@@ -46,7 +46,8 @@ import net.jakare.devlivery.model.appClasses.Carrito;
 import net.jakare.devlivery.model.dbClasses.Producto;
 import net.jakare.devlivery.model.dbClasses.User;
 import net.jakare.devlivery.ui.fragments.FragmentAcerca;
-import net.jakare.devlivery.ui.fragments.FragmentPublicidad;
+import net.jakare.devlivery.ui.fragments.demo.FragmentDemo;
+import net.jakare.devlivery.ui.fragments.demo.FragmentPublicidad;
 import net.jakare.devlivery.ui.fragments.restaurant.FragmentGestionProductos;
 import net.jakare.devlivery.ui.fragments.restaurant.FragmentListaEntregas;
 import net.jakare.devlivery.ui.fragments.restaurant.FragmentListaPedidos;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int DRAWER_ITEM_LISTA_PEDIDOS = 4;
     public static final int DRAWER_ITEM_LISTA_ENTREGAS = 5;
     public static final int DRAWER_ITEM_PUBLICIDAD = 6;
+    public static final int DRAWER_ITEM_SOPORTE_VENTA = 7;
 
     //Sobre la App
     public static final int DRAWER_ITEM_ACERCA = 9;
@@ -225,7 +227,15 @@ public class MainActivity extends AppCompatActivity {
                                 withIconColor(getResources().getColor(R.color.text)).
                                 withSelectedTextColor(getResources().getColor(R.color.primary)).
                                 withSelectedIconColor(getResources().getColor(R.color.primary)).
-                                withIcon(FontAwesome.Icon.faw_tags)
+                                withIcon(FontAwesome.Icon.faw_tags),
+                        new PrimaryDrawerItem().
+                                withIdentifier(DRAWER_ITEM_SOPORTE_VENTA).
+                                withName(getResources().getString(R.string.drawer_lista_demo)).
+                                withTextColor(getResources().getColor(R.color.text)).
+                                withIconColor(getResources().getColor(R.color.text)).
+                                withSelectedTextColor(getResources().getColor(R.color.primary)).
+                                withSelectedIconColor(getResources().getColor(R.color.primary)).
+                                withIcon(FontAwesome.Icon.faw_star)
                 ).addStickyDrawerItems(
                         //Bottom of Navigation Drawer
                         new SecondaryDrawerItem()
@@ -291,6 +301,10 @@ public class MainActivity extends AppCompatActivity {
             case DRAWER_ITEM_PUBLICIDAD:
                 title = getResources().getString(R.string.drawer_lista_publicidad);
                 f = new FragmentPublicidad();
+                break;
+            case DRAWER_ITEM_SOPORTE_VENTA:
+                title = getResources().getString(R.string.drawer_lista_demo);
+                f = new FragmentDemo();
                 break;
             case DRAWER_ITEM_ACERCA:
                 title = getResources().getString(R.string.drawer_about);

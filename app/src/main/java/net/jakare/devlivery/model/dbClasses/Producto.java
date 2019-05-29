@@ -34,6 +34,9 @@ public class Producto {
     @SerializedName("fechaCreacion")
     private String fechaCreacion;
 
+    @SerializedName("stats")
+    private String stats;
+
     public String getKey() {
         return key;
     }
@@ -104,5 +107,13 @@ public class Producto {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getStats() {
+        return stats;
+    }
+
+    public void setStats(String stats) {
+        this.stats = stats;
     }
 }

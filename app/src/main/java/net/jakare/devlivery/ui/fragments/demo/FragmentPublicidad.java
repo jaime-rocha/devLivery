@@ -1,4 +1,4 @@
-package net.jakare.devlivery.ui.fragments;
+package net.jakare.devlivery.ui.fragments.demo;
 
 import android.content.Context;
 import android.os.Bundle;
