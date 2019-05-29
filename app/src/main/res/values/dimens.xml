@@ -26,6 +26,8 @@
     <dimen name="text_lg">16sp</dimen>
     <dimen name="text_xl">18sp</dimen>
     <dimen name="text_xxl">20sp</dimen>
+    <dimen name="text_title">40sp</dimen>
+
 
     <dimen name="progress_height">10dp</dimen>
     <dimen name="layout_padding">8dp</dimen>

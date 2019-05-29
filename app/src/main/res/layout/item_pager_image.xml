@@ -8,9 +8,10 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/qwigley_regular"
         android:padding="@dimen/padding_lg"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_xxl"
+        android:textSize="@dimen/text_title"
         android:textStyle="italic" />
 
     <ImageView
