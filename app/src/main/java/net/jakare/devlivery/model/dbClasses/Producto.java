@@ -37,6 +37,12 @@ public class Producto {
     @SerializedName("stats")
     private String stats;
 
+    @SerializedName("ingredientes")
+    private String[] ingredientes;
+
+    @SerializedName("nombreEn")
+    private String nombreEn;
+
     public String getKey() {
         return key;
     }
@@ -115,5 +121,21 @@ public class Producto {
 
     public void setStats(String stats) {
         this.stats = stats;
+    }
+
+    public String getNombreEn() {
+        return nombreEn;
+    }
+
+    public void setNombreEn(String nombreEn) {
+        this.nombreEn = nombreEn;
+    }
+
+    public String[] getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(String[] ingredientes) {
+        this.ingredientes = ingredientes;
     }
 }

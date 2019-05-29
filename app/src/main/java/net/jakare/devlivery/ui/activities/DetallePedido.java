@@ -13,10 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import net.jakare.devlivery.R;
+import net.jakare.devlivery.controller.server.FirebasePedidosController;
 import net.jakare.devlivery.model.appClasses.Carrito;
 import net.jakare.devlivery.model.dbClasses.Pedido;
 import net.jakare.devlivery.ui.adapters.CarritoAdapter;
@@ -26,7 +28,7 @@ import net.jakare.devlivery.utils.global.GlobalFunctions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetallePedido extends AppCompatActivity implements View.OnClickListener{
+public class DetallePedido extends AppCompatActivity implements View.OnClickListener {
 
     final static String LOG = DetallePedido.class.getName();
 
@@ -34,7 +36,7 @@ public class DetallePedido extends AppCompatActivity implements View.OnClickList
     private Pedido pedido;
 
     private CarritoAdapter adapter;
-    private List<Carrito> items=new ArrayList<Carrito>();
+    private List<Carrito> items = new ArrayList<Carrito>();
 
     private RecyclerView rvLista;
     private TextView lblTotal;
@@ -49,7 +51,7 @@ public class DetallePedido extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido);
-        context=this;
+        context = this;
         initViews();
 
 
@@ -65,18 +67,17 @@ public class DetallePedido extends AppCompatActivity implements View.OnClickList
         rvLista.setLayoutManager(cardLayoutManager);
 
 
-        adapter=new CarritoAdapter(context,false);
+        adapter = new CarritoAdapter(context, false);
         rvLista.setAdapter(adapter);
 
 
-        Intent intent=getIntent();
-        if(intent.hasExtra(AppConstants.TAG_ITEM_PEDIDO)){
-            try
-            {
-                pedido=new Gson().fromJson(intent.getStringExtra(AppConstants.TAG_ITEM_PEDIDO),
+        Intent intent = getIntent();
+        if (intent.hasExtra(AppConstants.TAG_ITEM_PEDIDO)) {
+            try {
+                pedido = new Gson().fromJson(intent.getStringExtra(AppConstants.TAG_ITEM_PEDIDO),
                         Pedido.class);
 
-                List<Carrito> lstCarrito=pedido.getCarrito();
+                List<Carrito> lstCarrito = pedido.getCarrito();
                 actualizarCarrito(lstCarrito);
 
                 lblNombreCompleto.setText(pedido.getUsuario());
@@ -86,21 +87,21 @@ public class DetallePedido extends AppCompatActivity implements View.OnClickList
 
                 btnEnviar.setOnClickListener(this);
 
-            }catch (Exception ex){
-                Log.e(LOG+".onCreate", ""+ex.getMessage());
+            } catch (Exception ex) {
+                Log.e(LOG + ".onCreate", "" + ex.getMessage());
             }
         }
     }
 
     private void initViews() {
-        rvLista=(RecyclerView) findViewById(R.id.rvLista);
-        lblTotal=(TextView) findViewById(R.id.lblTotal);
+        rvLista = (RecyclerView) findViewById(R.id.rvLista);
+        lblTotal = (TextView) findViewById(R.id.lblTotal);
 
-        lblNombreCompleto=(TextView)findViewById(R.id.lblNombreCompleto);
-        lblDireccion=(TextView)findViewById(R.id.lblDireccion);
-        lblTelefono=(TextView)findViewById(R.id.lblTelefono);
-        lblObservaciones=(TextView)findViewById(R.id.lblObservaciones);
-        btnEnviar=(Button) findViewById(R.id.btnEnviar);
+        lblNombreCompleto = (TextView) findViewById(R.id.lblNombreCompleto);
+        lblDireccion = (TextView) findViewById(R.id.lblDireccion);
+        lblTelefono = (TextView) findViewById(R.id.lblTelefono);
+        lblObservaciones = (TextView) findViewById(R.id.lblObservaciones);
+        btnEnviar = (Button) findViewById(R.id.btnEnviar);
     }
 
     @Override
@@ -120,22 +121,22 @@ public class DetallePedido extends AppCompatActivity implements View.OnClickList
     }
 
     private void actualizarCarrito(List<Carrito> lstCarrito) {
-        double total=0;
+        double total = 0;
 
         items.clear();
         items.addAll(lstCarrito);
         adapter.swapCursor(items);
 
-        for (Carrito carrito : items){
-            total+=carrito.getSubtotal();
+        for (Carrito carrito : items) {
+            total += carrito.getSubtotal();
         }
         lblTotal.setText(GlobalFunctions.format2Digits(total));
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.btnEnviar){
-            //TODO cambiar estado del pedido
+        if (view.getId() == R.id.btnEnviar) {
+            Toast.makeText(context, "Proximamente", Toast.LENGTH_SHORT).show();
         }
     }
 }

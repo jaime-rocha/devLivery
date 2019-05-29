@@ -8,6 +8,7 @@
 
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorDemo">#D5BBA2</color>
 
     <!-- general text colors -->
     <color name="text">#212121</color>

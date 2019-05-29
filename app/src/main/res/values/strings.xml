@@ -21,6 +21,7 @@
     <!-- Productos -->
     <string name="bienvenido">Bienvenido!!</string>
     <string name="antojo">Que se servirá hoy?</string>
+    <string name="antojo_demo">La experiencia completa</string>
     <string name="instrucciones">Agrega tus productos al Carrito</string>
 
     <string name="categoria">Tipo de producto</string>
@@ -61,8 +62,8 @@
     <!-- Procesar pedido -->
     <string name="ya_casi">Todo listo!</string>
     <string name="procesar_instrucciones">Ingresa los datos del cliente</string>
-    <string name="nombre_completo">Nombre completo</string>
-    <string name="direccion">AREA</string>
+    <string name="nombre_completo">Nombre completo/Razón Social</string>
+    <string name="direccion">NIT</string>
     <string name="telefono">Piso</string>
     <string name="observaciones">Observaciones</string>
     <string name="observaciones_hint">Llena este campo con detalles de tu pedido.</string>

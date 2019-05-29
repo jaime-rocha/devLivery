@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
                                 withIconColor(getResources().getColor(R.color.text)).
                                 withSelectedTextColor(getResources().getColor(R.color.primary)).
                                 withSelectedIconColor(getResources().getColor(R.color.primary)).
-                                withIcon(FontAwesome.Icon.faw_truck),
+                                withIcon(FontAwesome.Icon.faw_check),
                         new DividerDrawerItem(),
                         new PrimaryDrawerItem().
                                 withIdentifier(DRAWER_ITEM_PUBLICIDAD).

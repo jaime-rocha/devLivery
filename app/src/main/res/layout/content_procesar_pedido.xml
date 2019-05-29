@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.activities.ProcesarPedidoActivity"
-    tools:showIn="@layout/activity_procesar_pedido"
-    android:orientation="vertical">
+    tools:showIn="@layout/activity_procesar_pedido">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,42 +25,44 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="8"
                     android:layout_height="wrap_content"
+                    android:layout_weight="8"
                     android:orientation="vertical"
                     android:padding="@dimen/padding_xl">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@string/ya_casi"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/text_xl"
-                        android:textStyle="bold"
-                        android:text="@string/ya_casi"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/lblInstrucciones"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/text"
-                        android:text="@string/procesar_instrucciones"/>
+                        android:text="@string/procesar_instrucciones"
+                        android:textColor="@color/text" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="2"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
                     android:padding="@dimen/padding_xl">
 
                     <ImageView
-                        android:contentDescription="@string/descripcion_logo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/logo" />
+                        android:contentDescription="@string/descripcion_logo"
+                        android:src="@mipmap/ic_launcher" />
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,16 +79,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_xl"
-                        android:text="@string/nombre_completo"/>
+                        android:text="@string/nombre_completo" />
 
                     <EditText
                         android:id="@+id/txtNombreCompleto"
-                        android:layout_marginTop="@dimen/padding_sm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_sm"
                         android:inputType="textCapSentences"
-                        android:singleLine="true"
-                        android:maxLines="1"/>
+                        android:maxLines="1"
+                        android:singleLine="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -97,22 +99,23 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity="bottom"
                         android:paddingEnd="@dimen/padding_md"
                         android:paddingRight="@dimen/padding_md"
-                        android:gravity="bottom"
-                        android:text="@string/direccion"/>
+                        android:text="@string/direccion" />
 
                     <EditText
                         android:id="@+id/txtDireccion"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingEnd="@dimen/padding_lg"
-                        android:paddingRight="@dimen/padding_lg"
                         android:gravity="bottom"
-                        android:ems="5"
-                        android:maxLines="1"/>
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingEnd="@dimen/padding_lg"
+                        android:paddingRight="@dimen/padding_lg" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,21 +124,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity="bottom"
                         android:paddingEnd="@dimen/padding_md"
                         android:paddingRight="@dimen/padding_md"
-                        android:gravity="bottom"
-                        android:text="@string/telefono"/>
+                        android:text="@string/telefono" />
 
                     <EditText
                         android:id="@+id/txtTelefono"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:paddingEnd="@dimen/padding_lg"
-                        android:paddingRight="@dimen/padding_lg"
-                        android:inputType="phone"
-                        android:gravity="bottom"
                         android:ems="5"
-                        android:maxLines="1"/>
+                        android:gravity="bottom"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingEnd="@dimen/padding_lg"
+                        android:paddingRight="@dimen/padding_lg" />
 
                 </LinearLayout>
 
@@ -143,32 +146,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_xl"
-                    android:text="@string/observaciones"/>
+                    android:text="@string/observaciones" />
 
                 <EditText
                     android:id="@+id/txtObservaciones"
-                    android:layout_marginTop="@dimen/padding_sm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_sm"
+                    android:background="@drawable/increase_bkg"
                     android:gravity="top"
                     android:hint="@string/observaciones_hint"
-                    android:textSize="@dimen/text_md"
-                    android:background="@drawable/increase_bkg"
-                    android:scrollbars="vertical"
+                    android:maxLines="50"
                     android:minLines="5"
-                    android:maxLines="50"/>
+                    android:scrollbars="vertical"
+                    android:textSize="@dimen/text_md" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnEnviar"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_marginTop="@dimen/padding_xl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_xl"
+                android:layout_marginBottom="@dimen/padding_double"
                 android:paddingTop="@dimen/padding_lg"
                 android:paddingBottom="@dimen/padding_lg"
-                android:text="@string/enviar_pedido"
-                android:layout_marginBottom="@dimen/padding_double"/>
+                android:text="@string/enviar_pedido" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
