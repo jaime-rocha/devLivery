@@ -11,6 +11,7 @@
     <string name="drawer_gestion_productos">Gestión de productos</string>
     <string name="drawer_lista_pedidos">Lista de pedidos</string>
     <string name="drawer_lista_entregas">Entregados</string>
+    <string name="drawer_lista_publicidad">Publicidad</string>
 
     <!-- App -->
     <string name="drawer_about">Acerca de </string>

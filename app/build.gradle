@@ -35,6 +35,7 @@ dependencies {
     implementation "com.google.firebase:firebase-storage:$firebase_version"
 
     implementation 'com.mikepenz:materialdrawer:6.0.9'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     implementation 'pub.devrel:easypermissions:0.2.1'
     implementation 'com.mikepenz:iconics-core:2.7.1@aar'

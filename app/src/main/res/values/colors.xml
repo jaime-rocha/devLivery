@@ -6,6 +6,9 @@
     <color name="colorPrimaryDark">#5D4037</color>
     <color name="colorAccent">#FF9800</color>
 
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+
     <!-- general text colors -->
     <color name="text">#212121</color>
     <color name="secondary">#727272</color>

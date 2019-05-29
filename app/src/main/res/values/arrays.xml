@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="tipo_producto">
-        <item>panes</item>
-        <item>empanadas</item>
-        <item>pasteles</item>
-        <item>masitas</item>
-        <item>galletas</item>
-        <item>buñuelos</item>
+        <item>Pastas</item>
+        <item>Carnes</item>
+        <item>Bebidas</item>
+        <item>Cafetería</item>
+        <item>Postres</item>
     </string-array>
 </resources>
