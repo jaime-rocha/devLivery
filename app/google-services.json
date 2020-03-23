@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "147669002284",
+    "firebase_url": "https://devlivery-a8edd.firebaseio.com",
+    "project_id": "devlivery-a8edd",
+    "storage_bucket": "devlivery-a8edd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147669002284:android:62dc018cbcdebd33",
+        "android_client_info": {
+          "package_name": "net.jakare.devlivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147669002284-89c6n7vuopo9j9ho5hdtqqvgbujf63fa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.jakare.devlivery",
+            "certificate_hash": "282FFDEAB73B849460D3111787AA4ED4A6C69271"
+          }
+        },
+        {
+          "client_id": "147669002284-cdcr6kbt21tv028u2h8e3kkgrokvk0a2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcUSRSUrH9x9wWlXVZSxZlHZM_a9my4rI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "147669002284-cdcr6kbt21tv028u2h8e3kkgrokvk0a2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.activities.ProcesarPedidoActivity"
+    tools:showIn="@layout/activity_procesar_pedido">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_xl">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ya_casi"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_xl"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lblInstrucciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/procesar_instrucciones"
+                        android:textColor="@color/text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:padding="@dimen/padding_xl">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/descripcion_logo"
+                        android:src="@mipmap/ic_launcher" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_xl">
+
+                <LinearLayout
+                    android:id="@+id/lyNombreCompleto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_xl"
+                        android:text="@string/nombre_completo" />
+
+                    <EditText
+                        android:id="@+id/txtNombreCompleto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_sm"
+                        android:inputType="textCapSentences"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:paddingEnd="@dimen/padding_md"
+                        android:paddingRight="@dimen/padding_md"
+                        android:text="@string/direccion" />
+
+                    <EditText
+                        android:id="@+id/txtDireccion"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingEnd="@dimen/padding_lg"
+                        android:paddingRight="@dimen/padding_lg" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:paddingEnd="@dimen/padding_md"
+                        android:paddingRight="@dimen/padding_md"
+                        android:text="@string/telefono" />
+
+                    <EditText
+                        android:id="@+id/txtTelefono"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:ems="5"
+                        android:gravity="bottom"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingEnd="@dimen/padding_lg"
+                        android:paddingRight="@dimen/padding_lg" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_xl"
+                    android:text="@string/observaciones" />
+
+                <EditText
+                    android:id="@+id/txtObservaciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_sm"
+                    android:background="@drawable/increase_bkg"
+                    android:gravity="top"
+                    android:hint="@string/observaciones_hint"
+                    android:maxLines="50"
+                    android:minLines="5"
+                    android:scrollbars="vertical"
+                    android:textSize="@dimen/text_md" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnEnviar"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_xl"
+                android:layout_marginBottom="@dimen/padding_double"
+                android:paddingTop="@dimen/padding_lg"
+                android:paddingBottom="@dimen/padding_lg"
+                android:text="@string/enviar_pedido" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
