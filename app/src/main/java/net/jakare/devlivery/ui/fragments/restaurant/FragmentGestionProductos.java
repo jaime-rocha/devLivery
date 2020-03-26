@@ -49,6 +49,7 @@ public class FragmentGestionProductos extends Fragment implements View.OnClickLi
         super.onCreate(savedInstanceState);
     }
 
+    @android.annotation.SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
